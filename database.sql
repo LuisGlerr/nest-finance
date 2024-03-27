@@ -1,0 +1,28 @@
+
+
+
+CREATE TABLE Owners (
+  id VARCHAR(255) PRIMARY KEY NOT NULL,
+  link VARCHAR(255),
+  NAME VARCHAR(255),
+  email VARCHAR(255)
+);
+
+CREATE TABLE Accounts (
+  id VARCHAR(255) PRIMARY KEY,
+  account_type VARCHAR(255),
+  NAME VARCHAR(255),
+  owner_id VARCHAR(255),
+  FOREIGN KEY (owner_id) REFERENCES Owners(id)
+);
+
+CREATE TABLE Transactions  (
+  id VARCHAR(255) PRIMARY KEY,
+  account_id VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL,
+  subcategory VARCHAR(255),
+  amount DECIMAL(10,2) NOT NULL,
+  TYPE VARCHAR(155) NOT NULL,
+  STATUS VARCHAR(155) NOT NULL,
+  FOREIGN KEY (account_id) REFERENCES Accounts(id)
+);
