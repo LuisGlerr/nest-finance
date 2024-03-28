@@ -3,7 +3,7 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    console.log('se ejecuto la raiz health')
+    //console.log('se ejecuto la raiz health')
     return 'Hello World!';
   }
 }
