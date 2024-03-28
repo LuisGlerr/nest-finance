@@ -1,4 +1,4 @@
-import { HttpServer, Module } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TransactionsModule } from './transactions/transactions.module';
@@ -8,24 +8,25 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Owner } from './owners/entities/owner.entity';
 import { ConfigModule } from '@nestjs/config';
 import { CategoriesModule } from './categories/categories.module';
-import * as express from 'express';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
     TransactionsModule, OwnersModule, AccountsModule,
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'database-test.czyusc842pwt.us-east-1.rds.amazonaws.com',
+      host: process.env.DB_HOST,
       port: 3306,
-      username: 'dbtesting',
-      password: 'dbpass_micasa0ficina',
-      database: 'finance',
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       entities: [Owner],
       synchronize: false,
     }),
-    ConfigModule.forRoot(),
-    CategoriesModule
+    CategoriesModule,
+    OrdersModule
   ],
   controllers: [AppController],
   providers: [AppService],

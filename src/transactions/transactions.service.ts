@@ -56,7 +56,7 @@ export class TransactionsService {
         transactionsDb.push(newObject)
       };
   
-      console.log('lo que transformamos ', transactionsDb)
+      //console.log('lo que transformamos ', transactionsDb)
   
       let resp = await this.transactionRepository.save(transactionsDb)
   
@@ -74,7 +74,7 @@ export class TransactionsService {
   async findOne(category: string) {
     let transCategory = await this.transactionRepository.findBy({ category });
 
-    console.log(JSON.stringify(transCategory))
+    //console.log(JSON.stringify(transCategory))
 
     let amount = _.chain(transCategory)
     // 1. Map and convert amounts to floats
@@ -90,7 +90,7 @@ export class TransactionsService {
   async financialHealth() {
     let transCategory = await this.transactionRepository.find();
 
-    console.log(JSON.stringify(transCategory))
+    //console.log(JSON.stringify(transCategory))
 
     let operation = _.chain(transCategory)
     // 1. Group by type
@@ -112,13 +112,13 @@ export class TransactionsService {
     let isHealty;
 
     if (outflowAmount < inflowAmount) {
-      console.log("El totalAmount de OUTFLOW es menor que el de INFLOW.");
+      //console.log("El totalAmount de OUTFLOW es menor que el de INFLOW.");
       isHealty = true;
     } else if (outflowAmount > inflowAmount) {
-      console.log("El totalAmount de OUTFLOW es mayor que el de INFLOW.");
+      //console.log("El totalAmount de OUTFLOW es mayor que el de INFLOW.");
       isHealty = false;
     } else {
-      console.log("Los totalAmount de OUTFLOW e INFLOW son iguales.");
+      //console.log("Los totalAmount de OUTFLOW e INFLOW son iguales.");
       isHealty = true;
     }
 
@@ -134,7 +134,7 @@ export class TransactionsService {
     let transCategory = await this.transactionRepository.find();
     let accounts = await this.accountRepository.find();
 
-    console.log(JSON.stringify(transCategory))
+    //console.log(JSON.stringify(transCategory))
 
     let operation = _.chain(transCategory)
     // 1. Group by type
